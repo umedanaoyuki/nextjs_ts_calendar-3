@@ -1,5 +1,5 @@
 "use client";
-import { useActionState } from "react";
+import { userLogin } from "@/app/actions/userLogin";
 
 const initialState = {
   message: "",
@@ -8,7 +8,7 @@ const initialState = {
 const Login = () => {
   return (
     <div>
-      <form>
+      <form action={userLogin}>
         <input type="text" name="email" placeholder="メールアドレス" required />
         <input type="text" name="password" placeholder="パスワード" required />
         <button>ログイン</button>
