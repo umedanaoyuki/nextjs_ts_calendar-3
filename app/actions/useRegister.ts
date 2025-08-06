@@ -1,5 +1,6 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import connectDB from "../utils/database";
 import { UserModel } from "../utils/schemaModels";
 
@@ -18,4 +19,6 @@ export const useRegister = async (formData: FormData) => {
   } catch {
     throw new Error("ユーザー登録に失敗しました");
   }
+
+  redirect("/user/login");
 };

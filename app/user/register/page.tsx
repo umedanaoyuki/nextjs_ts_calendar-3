@@ -33,8 +33,8 @@ const Register = () => {
               <label htmlFor="email">メールアドレス</label>
               <input
                 id="email"
-                name="text"
-                type="email"
+                name="email"
+                type="text"
                 required
                 className="appearance-none rounded-[5px] relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="メールアドレス"
@@ -61,7 +61,6 @@ const Register = () => {
               アカウントを作成
             </button>
           </div>
-
           <div className="text-center font-medium text-gray-900">
             すでにアカウントをお持ちですか？
             <Link

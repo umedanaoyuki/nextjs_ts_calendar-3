@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { SignJWT } from "jose";
 import connectDB from "../utils/database";
 import { UserModel } from "../utils/schemaModels";
+import { redirect } from "next/navigation";
 
 const config = {
   maxAge: 60 * 60 * 2,
@@ -50,4 +51,6 @@ export const userLogin = async (
   } catch {
     return { message: "ログインに失敗しました" };
   }
+
+  redirect("/");
 };

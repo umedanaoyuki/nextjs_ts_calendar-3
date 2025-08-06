@@ -1,3 +1,3 @@
 export default function Home() {
-  return <div>テスト</div>;
+  return <div>カレンダーページ</div>;
 }
