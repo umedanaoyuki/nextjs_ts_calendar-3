@@ -11,9 +11,9 @@ const config = {
 };
 
 export const userLogin = async (
-  prevState: { message: string },
+  prevState: { message: string } | undefined,
   formData: FormData
-) => {
+): Promise<{ message: string } | undefined> => {
   const userData = {
     email: formData.get("email"),
     password: formData.get("password"),
