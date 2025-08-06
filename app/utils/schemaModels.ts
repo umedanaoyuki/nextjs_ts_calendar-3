@@ -15,16 +15,5 @@ const UserSchema = new Schema({
   },
 });
 
-const ItemSchema = new Schema({
-  title: String,
-  image: String,
-  price: String,
-  description: String,
-  enmail: String,
-});
-
 export const UserModel =
   mongoose.models.User || mongoose.model("User", UserSchema);
-
-export const ItemModel =
-  mongoose.models.Item || mongoose.model("Item", ItemSchema);
