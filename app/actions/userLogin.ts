@@ -1,5 +1,6 @@
 "use server";
 
+import { SignJWT } from "jose";
 import connectDB from "../utils/database";
 import { UserModel } from "../utils/schemaModels";
 
@@ -19,6 +20,20 @@ export const userLogin = async (
 
     if (savedUserData) {
       if (userData.password === savedUserData.password) {
+        // シークレットキー
+        const secretKey = new TextEncoder().encode("calender-app");
+
+        const payload = {
+          email: userData.email,
+        };
+
+        const token = await new SignJWT(payload)
+          .setProtectedHeader({ alg: "HS256" })
+          .setExpirationTime("2h")
+          .sign(secretKey);
+
+        console.log({ token });
+
         return { message: "ログイン成功" };
       } else {
         return { message: "パスワードが間違っています" };
