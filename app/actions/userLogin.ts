@@ -23,11 +23,9 @@ export const userLogin = async (
   try {
     await connectDB();
     const savedUserData = await UserModel.findOne({ email: userData.email });
-    console.log({ savedUserData });
 
     if (savedUserData) {
       if (userData.password === savedUserData.password) {
-        console.log("ログイン成功");
         // シークレットキー
         const secretKey = new TextEncoder().encode("calender-app");
 

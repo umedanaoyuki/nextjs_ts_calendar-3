@@ -11,8 +11,6 @@ export const useRegister = async (formData: FormData) => {
     password: formData.get("password"),
   };
 
-  console.log({ userData });
-
   try {
     await connectDB();
     await UserModel.create(userData);
