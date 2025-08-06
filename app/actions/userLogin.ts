@@ -1,8 +1,14 @@
 "use server";
 
+import { cookies } from "next/headers";
 import { SignJWT } from "jose";
 import connectDB from "../utils/database";
 import { UserModel } from "../utils/schemaModels";
+
+const config = {
+  maxAge: 60 * 60 * 2,
+  httpOnly: true,
+};
 
 export const userLogin = async (
   prevState: { message: string },
@@ -20,6 +26,7 @@ export const userLogin = async (
 
     if (savedUserData) {
       if (userData.password === savedUserData.password) {
+        console.log("ログイン成功");
         // シークレットキー
         const secretKey = new TextEncoder().encode("calender-app");
 
@@ -32,9 +39,8 @@ export const userLogin = async (
           .setExpirationTime("2h")
           .sign(secretKey);
 
-        console.log({ token });
-
-        return { message: "ログイン成功" };
+        const cookie = await cookies();
+        cookie.set("token", token, config);
       } else {
         return { message: "パスワードが間違っています" };
       }
