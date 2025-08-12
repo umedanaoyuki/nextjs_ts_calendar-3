@@ -1,4 +1,5 @@
 import { useRegister } from "@/app/actions/useRegister";
+import { Input } from "@/app/components/Input";
 import Link from "next/link";
 
 const Register = () => {
@@ -20,34 +21,31 @@ const Register = () => {
           <div className="rounded-md -space-y-px">
             <div>
               <label htmlFor="name">名前</label>
-              <input
+              <Input
                 id="name"
                 name="name"
                 type="text"
-                required
-                className="appearance-none rounded-[5px] relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                required={true}
                 placeholder="名前"
               />
             </div>
             <div>
               <label htmlFor="email">メールアドレス</label>
-              <input
+              <Input
                 id="email"
                 name="email"
                 type="text"
-                required
-                className="appearance-none rounded-[5px] relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                required={true}
                 placeholder="メールアドレス"
               />
             </div>
             <div>
               <label htmlFor="password">パスワード</label>
-              <input
+              <Input
                 id="password"
                 name="password"
                 type="text"
-                required
-                className="appearance-none rounded-[5px] relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                required={true}
                 placeholder="パスワード"
               />
             </div>

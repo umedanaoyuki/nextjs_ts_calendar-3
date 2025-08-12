@@ -1,5 +1,6 @@
 "use client";
 import { userLogin } from "@/app/actions/userLogin";
+import { Input } from "@/app/components/Input";
 import Link from "next/link";
 import { useActionState } from "react";
 
@@ -24,24 +25,22 @@ const Login = () => {
           <div className="rounded-md -space-y-px">
             <div>
               <label htmlFor="email">メールアドレス</label>
-              <input
+              <Input
                 id="email"
                 type="text"
                 name="email"
                 placeholder="メールアドレス"
-                className="appearance-none rounded-[5px] relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                required
+                required={true}
               />
             </div>
             <div>
               <label htmlFor="password">パスワード</label>
-              <input
+              <Input
                 id="password"
                 type="text"
                 name="password"
-                className="appearance-none rounded-[5px] relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="パスワード"
-                required
+                required={true}
               />
               {state && <h3>{state.message}</h3>}
             </div>
