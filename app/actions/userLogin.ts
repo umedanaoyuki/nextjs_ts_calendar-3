@@ -21,6 +21,12 @@ export const userLogin = async (
     await connectDB();
     const savedUserData = await UserModel.findOne({ email });
 
+    if (!savedUserData)
+      return { message: "エラー：ユーザー登録をしてください" };
+
+    if (password !== savedUserData.password)
+      return { message: "パスワードが間違っています" };
+
     if (savedUserData) {
       if (password === savedUserData.password) {
         // シークレットキー
@@ -37,11 +43,7 @@ export const userLogin = async (
 
         const cookie = await cookies();
         cookie.set("token", token, config);
-      } else {
-        return { message: "パスワードが間違っています" };
       }
-    } else {
-      return { message: "エラー：ユーザー登録をしてください" };
     }
   } catch {
     return { message: "ログインに失敗しました" };
