@@ -1,10 +1,9 @@
 "use server";
 
-import { cookies } from "next/headers";
-import { SignJWT } from "jose";
 import connectDB from "../utils/database";
 import { UserModel } from "../utils/schemaModels";
 import { redirect } from "next/navigation";
+import { generateToken, setTokenCookie } from "../utils/auth";
 
 const config = {
   maxAge: 60 * 60 * 2,
@@ -36,13 +35,9 @@ export const userLogin = async (
           email,
         };
 
-        const token = await new SignJWT(payload)
-          .setProtectedHeader({ alg: "HS256" })
-          .setExpirationTime("2h")
-          .sign(secretKey);
+        const token = await generateToken({ payload, secretKey });
 
-        const cookie = await cookies();
-        cookie.set("token", token, config);
+        setTokenCookie({ token, config });
       }
     }
   } catch {
