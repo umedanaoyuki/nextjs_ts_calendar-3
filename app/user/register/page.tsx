@@ -1,4 +1,5 @@
 import { useRegister } from "@/app/actions/useRegister";
+import { Button } from "@/app/components/Button";
 import { Input } from "@/app/components/Input";
 import Link from "next/link";
 
@@ -52,12 +53,7 @@ const Register = () => {
           </div>
 
           <div>
-            <button
-              type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              アカウントを作成
-            </button>
+            <Button>アカウントを作成</Button>
           </div>
           <div className="text-center font-medium text-gray-900">
             すでにアカウントをお持ちですか？

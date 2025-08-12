@@ -1,5 +1,6 @@
 "use client";
 import { userLogin } from "@/app/actions/userLogin";
+import { Button } from "@/app/components/Button";
 import { Input } from "@/app/components/Input";
 import Link from "next/link";
 import { useActionState } from "react";
@@ -45,12 +46,7 @@ const Login = () => {
               {state && <h3>{state.message}</h3>}
             </div>
           </div>
-          <button
-            type="submit"
-            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            ログイン
-          </button>
+          <Button>ログイン</Button>
           <div className="text-center font-medium text-gray-900">
             アカウントを持っていませんか？
             <Link
