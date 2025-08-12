@@ -15,22 +15,19 @@ export const userLogin = async (
   prevState: { message: string } | undefined,
   formData: FormData
 ): Promise<{ message: string } | undefined> => {
-  const userData = {
-    email: formData.get("email"),
-    password: formData.get("password"),
-  };
+  const [email, password] = [formData.get("email"), formData.get("password")];
 
   try {
     await connectDB();
-    const savedUserData = await UserModel.findOne({ email: userData.email });
+    const savedUserData = await UserModel.findOne({ email });
 
     if (savedUserData) {
-      if (userData.password === savedUserData.password) {
+      if (password === savedUserData.password) {
         // シークレットキー
         const secretKey = new TextEncoder().encode(process.env.SECRET_KEY);
 
         const payload = {
-          email: userData.email,
+          email,
         };
 
         const token = await new SignJWT(payload)
