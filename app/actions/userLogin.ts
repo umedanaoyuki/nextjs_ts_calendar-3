@@ -27,7 +27,7 @@ export const userLogin = async (
     if (savedUserData) {
       if (userData.password === savedUserData.password) {
         // シークレットキー
-        const secretKey = new TextEncoder().encode("calender-app");
+        const secretKey = new TextEncoder().encode(process.env.SECRET_KEY);
 
         const payload = {
           email: userData.email,
