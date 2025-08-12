@@ -21,7 +21,7 @@ export const CalendarNav = ({ setCurrentDate, addSchedule }: PropsType) => {
     setCurrentDate((prevDate) => addMonths(prevDate, 1));
 
   return (
-    <div className="w-[80%] flex justify-between mb-2">
+    <div className="w-[80%] flex justify-between mb-2 mx-auto">
       <div className="flex items-center text-white gap-4">
         <FaArrowAltCircleLeft
           className="text-lime-800 text-2xl"

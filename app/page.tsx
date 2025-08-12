@@ -1,5 +1,13 @@
 import { CalendarPage } from "./components/pages/CalendarPage";
+import { LoginLayout } from "./components/templates/LoginLayout";
 
 export default function Home() {
-  return <CalendarPage />;
+  return (
+    <>
+      <LoginLayout />
+      <div className="">
+        <CalendarPage />
+      </div>
+    </>
+  );
 }
