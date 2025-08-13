@@ -43,6 +43,7 @@ const CalendarPage = () => {
         <CalendarNavigation
           setCurrentDate={setCurrentDate}
           addSchedule={addSchedule}
+          currentDate={currentDate}
         />
         <div className="mx-0.5 my-2 grid flex-1 grid-cols-7 overflow-hidden rounded-2xl bg-white shadow-xl sm:m-4">
           {weekDays.map((day, i) => {
