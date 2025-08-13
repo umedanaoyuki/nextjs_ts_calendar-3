@@ -45,7 +45,7 @@ const Register = () => {
               <Input
                 id="password"
                 name="password"
-                type="text"
+                type="password"
                 required={true}
                 placeholder="パスワード"
               />

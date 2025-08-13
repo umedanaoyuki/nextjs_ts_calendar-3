@@ -38,7 +38,7 @@ const Login = () => {
               <label htmlFor="password">パスワード</label>
               <Input
                 id="password"
-                type="text"
+                type="password"
                 name="password"
                 placeholder="パスワード"
                 required={true}
