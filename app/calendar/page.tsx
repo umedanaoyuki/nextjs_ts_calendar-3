@@ -5,6 +5,7 @@ import { useCalendar } from "../hooks/useCalendar";
 import { DateList, Schedule } from "../types/calendar";
 import { getScheduleList } from "../api/calendar";
 import { CalendarNavigation } from "../components/organisms/CalendarNavigation";
+import { ScheduleDetailsModal } from "../components/organisms/ScheduleDetailsModal";
 
 const CalendarPage = () => {
   const weekDays = ["日", "月", "火", "水", "木", "金", "土"];
@@ -21,21 +22,39 @@ const CalendarPage = () => {
     setAllSchedules,
   });
 
+  const [selectedSchedule, setSelectedSchedule] = useState<Schedule | null>(
+    null
+  );
+
+  // 編集ボタンの表示について（初期は編集モードではない）
+  const [isEditting, setIsEditting] = useState<boolean>(false);
+
+  const closeModal = () => {
+    setSelectedSchedule(null);
+    setIsEditting(false);
+  };
+
+  const handleIsEdittingChange = (isEditting: boolean) => {
+    setIsEditting(!isEditting);
+  };
+
   const today = new Date();
   const todayDate = today.getDate();
 
-  const events = {
-    5: [
-      { title: "会議", time: "10:00", color: "blue" },
-      { title: "ランチミーティング", time: "12:30", color: "green" },
-    ],
-    12: [{ title: "プレゼン", time: "14:00", color: "purple" }],
-    15: [
-      { title: "貸切", time: "終日", color: "red" },
-      { title: "歓迎会", time: "10:00", color: "orange" },
-    ],
-    20: [{ title: "研修", time: "13:00", color: "indigo" }],
-  };
+  //   const events = {
+  //     5: [
+  //       { title: "会議", time: "10:00", color: "blue" },
+  //       { title: "ランチミーティング", time: "12:30", color: "green" },
+  //     ],
+  //     12: [{ title: "プレゼン", time: "14:00", color: "purple" }],
+  //     15: [
+  //       { title: "貸切", time: "終日", color: "red" },
+  //       { title: "歓迎会", time: "10:00", color: "orange" },
+  //     ],
+  //     20: [{ title: "研修", time: "13:00", color: "indigo" }],
+  //   };
+
+  const events = getScheduleList();
 
   return (
     <>
@@ -81,28 +100,29 @@ const CalendarPage = () => {
                   {day <= 31 ? day : day - 31}
                 </span>
                 <div className="flex w-full flex-col gap-1">
-                  {events[day as keyof typeof events]?.map((event, index) => {
+                  {events.map((event, index) => {
                     return (
-                      <div
+                      <button
                         key={index}
-                        className={cn("flex gap-1 rounded-md p-1 text-xs", {
-                          "bg-blue-100 text-blue-700": event.color === "blue",
-                          "bg-green-100 text-green-700":
-                            event.color === "green",
-                          "bg-purple-100 text-purple-700":
-                            event.color === "purple",
-                          "bg-red-100 text-red-700": event.color === "red",
-                          "bg-orange-100 text-orange-700":
-                            event.color === "orange",
-                          "bg-indigo-100 text-indigo-700":
-                            event.color === "indigo",
-                        })}
+                        // className={cn("flex gap-1 rounded-md p-1 text-xs", {
+                        //   "bg-blue-100 text-blue-700": event.color === "blue",
+                        //   "bg-green-100 text-green-700":
+                        //     event.color === "green",
+                        //   "bg-purple-100 text-purple-700":
+                        //     event.color === "purple",
+                        //   "bg-red-100 text-red-700": event.color === "red",
+                        //   "bg-orange-100 text-orange-700":
+                        //     event.color === "orange",
+                        //   "bg-indigo-100 text-indigo-700":
+                        //     event.color === "indigo",
+                        // })}
+                        onClick={() => setSelectedSchedule(event)}
                       >
-                        <span className="hidden sm:inline">{event.time}</span>
+                        {/* <span className="hidden sm:inline">{event.time}</span> */}
                         <span className="hidden truncate sm:inline">
                           {event.title}
                         </span>
-                      </div>
+                      </button>
                     );
                   })}
                 </div>
@@ -111,6 +131,15 @@ const CalendarPage = () => {
           })}
         </div>
       </div>
+      <ScheduleDetailsModal
+        selectedSchedule={selectedSchedule}
+        closeModal={closeModal}
+        deleteSchedule={deleteSchedule}
+        isEditting={isEditting}
+        setSelectedSchedule={setSelectedSchedule}
+        handleIsEdittingChange={handleIsEdittingChange}
+        changeSchedule={changeSchedule}
+      />
     </>
   );
 };
