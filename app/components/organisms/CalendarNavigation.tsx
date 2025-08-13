@@ -1,6 +1,7 @@
 import { Schedule } from "@/app/types/calendar";
 import { addMonths, getMonth, getYear } from "date-fns";
 import { Dispatch, SetStateAction, useState } from "react";
+import { CreateScheduleModal } from "./CreateScheduleModal";
 
 type PropsType = {
   setCurrentDate: Dispatch<SetStateAction<Date>>;
@@ -55,6 +56,11 @@ export const CalendarNavigation = ({
       </div>
       <div className="flex items-center justify-center gap-4">
         <button onClick={() => setIsOpen(true)}>予定作成</button>
+        <CreateScheduleModal
+          isOpen={isOpen}
+          closeModal={closeModal}
+          addSchedule={addSchedule}
+        />
         <p>テストユーザー</p>
         <p>ログアウト</p>
       </div>
