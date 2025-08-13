@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useCalendar } from "../hooks/useCalendar";
 import { DateList, Schedule } from "../types/calendar";
 import { getScheduleList } from "../api/calendar";
-import { LoginLayout } from "../components/templates/LoginLayout";
+import { CalendarNavigation } from "../components/organisms/CalendarNavigation";
 
 const CalendarPage = () => {
   const weekDays = ["日", "月", "火", "水", "木", "金", "土"];
@@ -40,30 +40,10 @@ const CalendarPage = () => {
   return (
     <>
       <div className="flex h-screen flex-col bg-linear-to-br from-indigo-50 via-purple-50 to-pink-50">
-        <header className="flex flex-col justify-between gap-4 bg-white p-4 sm:flex-row">
-          {/* <h1 className="bg-linear-to-br from-purple-600 to-pink-600 bg-clip-text text-center text-3xl font-bold text-transparent">
-            カレンダー
-          </h1> */}
-          <div className="flex items-center justify-between gap-4">
-            <button className="rounded-lg bg-white px-4 py-2 text-purple-600 shadow-sm transition-colors duration-500 hover:bg-purple-50">
-              今日
-            </button>
-            <div className="flex items-center rounded-lg px-4 py-2 shadow-sm">
-              <button className="flex h-5 w-5 items-center justify-center rounded-full bg-white transition-colors duration-500 hover:bg-purple-100">
-                ←
-              </button>
-              <button className="flex h-5 w-5 items-center justify-center rounded-full bg-white transition-colors duration-500 hover:bg-purple-100">
-                →
-              </button>
-              <span>2024年3月</span>
-            </div>
-          </div>
-          <div className="flex items-center justify-center gap-4">
-            <p>予定作成</p>
-            <p>テストユーザー</p>
-            <p>ログアウト</p>
-          </div>
-        </header>
+        <CalendarNavigation
+          setCurrentDate={setCurrentDate}
+          addSchedule={addSchedule}
+        />
         <div className="mx-0.5 my-2 grid flex-1 grid-cols-7 overflow-hidden rounded-2xl bg-white shadow-xl sm:m-4">
           {weekDays.map((day, i) => {
             return (
