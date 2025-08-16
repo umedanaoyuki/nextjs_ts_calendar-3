@@ -3,7 +3,9 @@
 import connectDB from "../utils/database";
 import { UserModel } from "../utils/schemaModels";
 import { redirect } from "next/navigation";
-import { generateToken, setTokenCookie } from "../utils/auth";
+import { generateToken } from "../utils/auth";
+import { compareSync } from "bcryptjs";
+import { cookies } from "next/headers";
 
 const config = {
   maxAge: 60 * 60 * 2,
@@ -14,32 +16,39 @@ export const userLogin = async (
   prevState: { message: string } | undefined,
   formData: FormData
 ): Promise<{ message: string } | undefined> => {
-  const [email, password] = [formData.get("email"), formData.get("password")];
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
 
   try {
     await connectDB();
     const savedUserData = await UserModel.findOne({ email });
 
+    console.log({ savedUserData });
+
     if (!savedUserData)
       return { message: "エラー：ユーザー登録をしてください" };
 
-    if (password !== savedUserData.password)
+    const isPasswordValid = compareSync(password, savedUserData.password);
+
+    console.log({ isPasswordValid });
+
+    if (!isPasswordValid) {
       return { message: "パスワードが間違っています" };
-
-    if (savedUserData) {
-      if (password === savedUserData.password) {
-        // シークレットキー
-        const secretKey = new TextEncoder().encode(process.env.SECRET_KEY);
-
-        const payload = {
-          email,
-        };
-
-        const token = await generateToken({ payload, secretKey });
-
-        setTokenCookie({ token, config });
-      }
     }
+
+    const secretKey = new TextEncoder().encode(process.env.SECRET_KEY);
+
+    const payload = {
+      email,
+    };
+
+    const token = await generateToken({ payload, secretKey });
+
+    // Server Action内でクッキーを設定
+    const cookie = await cookies();
+    cookie.set("token", token, config);
+
+    console.log("ログイン成功");
   } catch {
     return { message: "ログインに失敗しました" };
   }
