@@ -1,5 +1,6 @@
-import { SignJWT } from "jose";
+import { jwtVerify, SignJWT } from "jose";
 import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
 type GenerateTokenProps = {
   payload: {
@@ -32,4 +33,24 @@ export const setTokenCookie = async ({
 }: SetTokenCookieProps) => {
   const cookie = await cookies();
   cookie.set("token", token, config);
+};
+
+export const updateToken = async (token: string) => {
+  const secretKey = new TextEncoder().encode(process.env.SECRET_KEY);
+  const { payload } = await jwtVerify(token, secretKey);
+
+  const newToken = await new SignJWT(payload)
+    .setProtectedHeader({ alg: "HS256" })
+    .setExpirationTime("2h")
+    .sign(secretKey);
+
+  const response = NextResponse.next();
+
+  response.cookies.set("token", newToken, {
+    name: "token",
+    value: newToken,
+    maxAge: 60 * 60 * 2,
+  });
+
+  return response;
 };
