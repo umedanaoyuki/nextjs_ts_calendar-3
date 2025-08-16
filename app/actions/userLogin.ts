@@ -25,14 +25,17 @@ export const userLogin = async (
 
     console.log({ savedUserData });
 
-    if (!savedUserData)
+    if (!savedUserData) {
+      console.log("ユーザー登録をしてください");
       return { message: "エラー：ユーザー登録をしてください" };
+    }
 
     const isPasswordValid = compareSync(password, savedUserData.password);
 
     console.log({ isPasswordValid });
 
     if (!isPasswordValid) {
+      console.log("パスワードが間違っています");
       return { message: "パスワードが間違っています" };
     }
 
