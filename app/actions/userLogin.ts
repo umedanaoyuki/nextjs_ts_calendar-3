@@ -22,17 +22,12 @@ export const userLogin = async (
   try {
     await connectDB();
     const savedUserData = await UserModel.findOne({ email });
-
-    console.log({ savedUserData });
-
     if (!savedUserData) {
       console.log("ユーザー登録をしてください");
       return { message: "エラー：ユーザー登録をしてください" };
     }
 
     const isPasswordValid = compareSync(password, savedUserData.password);
-
-    console.log({ isPasswordValid });
 
     if (!isPasswordValid) {
       console.log("パスワードが間違っています");
@@ -50,7 +45,6 @@ export const userLogin = async (
     // Server Action内でクッキーを設定
     const cookie = await cookies();
     cookie.set("token", token, config);
-
     console.log("ログイン成功");
   } catch {
     return { message: "ログインに失敗しました" };
