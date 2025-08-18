@@ -2,12 +2,14 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
+// DB用のスキーマ
 const UserSchema = new Schema({
   name: {
     type: String,
     trim: true,
     minlength: 2,
     maxlength: 30,
+    required: true,
   },
   email: {
     type: String,
@@ -22,6 +24,8 @@ const UserSchema = new Schema({
   },
   password: {
     type: String,
+    minlength: 8,
+    maxlength: 500,
     required: true,
   },
 });
