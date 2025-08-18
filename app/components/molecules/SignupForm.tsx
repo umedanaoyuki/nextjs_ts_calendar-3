@@ -33,7 +33,7 @@ const SignupForm = () => {
           toast(data.message);
           setTimeout(() => {
             router.push("/user/login");
-          }, 5000);
+          }, 1500);
         },
       },
       formProps: {
