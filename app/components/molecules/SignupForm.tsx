@@ -9,28 +9,43 @@ import { Input } from "@/app/components/Input";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { da } from "zod/v4/locales";
 
 const SignupForm = () => {
   const router = useRouter();
 
-  const { form, action, handleSubmitWithAction, resetFormAndAction } =
-    useHookFormAction(sigup, zodResolver(SignupSchema), {
+  const { form, action, handleSubmitWithAction } = useHookFormAction(
+    sigup,
+    zodResolver(SignupSchema),
+    {
       actionProps: {
         onSuccess: ({ data }) => {
           if (data === null) return;
-          router.push("/user/login");
+          console.log("Toast発動");
+          console.log({ data });
+          toast(data.message);
+          setTimeout(() => {
+            router.push("/user/login");
+          }, 5000);
         },
       },
-      formProps: {},
+      formProps: {
+        defaultValues: {
+          name: "",
+          email: "",
+          password: "",
+        },
+      },
       errorMapProps: {},
-    });
+    }
+  );
 
   // return (
   //   <form onSubmit={handleSubmitWithAction} className="mt-8 space-y-6">
@@ -127,7 +142,9 @@ const SignupForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">アカウントを作成</Button>
+        <Button type="submit" disabled={action.isPending}>
+          {action.isPending ? "作成中..." : "アカウントを作成"}
+        </Button>
       </form>
     </Form>
   );

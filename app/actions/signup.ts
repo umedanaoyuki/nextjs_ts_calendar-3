@@ -21,13 +21,16 @@ export const sigup = actionClient
     try {
       await connectDB();
       await UserModel.create(userData);
+
+      return {
+        success: true,
+        message: "ユーザー登録が完了しました",
+      };
     } catch (err) {
       console.log({ err });
-      throw new Error("ユーザー登録に失敗しました");
+      return {
+        success: false,
+        message: "ユーザー登録に失敗しました",
+      };
     }
-
-    return {
-      success: true,
-      message: "ユーザー登録が完了しました",
-    };
   });
