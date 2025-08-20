@@ -37,7 +37,7 @@ export const login = actionClient
         console.log("パスワードが間違っています");
         return {
           success: false,
-          message: "パスワードが間違っています",
+          message: "ログイン情報が間違っています",
         };
       }
 
