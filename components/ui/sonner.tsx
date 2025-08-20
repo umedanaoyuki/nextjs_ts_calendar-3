@@ -23,7 +23,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
             "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
           error:
             "group-[.toaster]:!bg-destructive group-[.toaster]:text-destructive-foreground group-[.toaster]:!border-destructive",
-          success: "!bg-green-500 !text-white !border-green-600",
+          success: "!bg-green-500 !text-white !border-green-500",
         },
       }}
       {...props}
