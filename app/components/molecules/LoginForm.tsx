@@ -29,8 +29,13 @@ const LoginForm = () => {
         onSuccess: ({ data }) => {
           if (data === null) return;
           console.log("Toast発動");
-          console.log({ data });
-          toast(data.message);
+          if (data.success) {
+            console.log({ data });
+            toast.success(data.message);
+          } else {
+            console.log({ data });
+            toast.error(data.message);
+          }
           setTimeout(() => {
             router.push("/");
           }, 1000);
