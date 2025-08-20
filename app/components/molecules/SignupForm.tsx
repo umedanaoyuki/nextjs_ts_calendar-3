@@ -29,12 +29,8 @@ const SignupForm = () => {
         onSuccess: ({ data }) => {
           if (data === null) return;
           if (data.success) {
-            console.log("Toast発動");
-            console.log({ data });
             toast.success(data.message);
           } else {
-            console.log("Toast発動");
-            console.log({ data });
             toast.error(data.message);
           }
           setTimeout(() => {
@@ -52,56 +48,6 @@ const SignupForm = () => {
       errorMapProps: {},
     }
   );
-
-  // return (
-  //   <form onSubmit={handleSubmitWithAction} className="mt-8 space-y-6">
-  //     <div className="rounded-md -space-y-px">
-  //       <div>
-  //         <label htmlFor="name">名前</label>
-  //         <Input
-  //           id="name"
-  //           name="name"
-  //           type="text"
-  //           required={true}
-  //           placeholder="名前"
-  //         />
-  //       </div>
-  //       <div>
-  //         <label htmlFor="email">メールアドレス</label>
-  //         <Input
-  //           id="email"
-  //           name="email"
-  //           type="text"
-  //           required={true}
-  //           placeholder="メールアドレス"
-  //         />
-  //       </div>
-  //       <div>
-  //         <label htmlFor="password">パスワード</label>
-  //         <Input
-  //           id="password"
-  //           name="password"
-  //           type="password"
-  //           required={true}
-  //           placeholder="パスワード"
-  //         />
-  //       </div>
-  //     </div>
-
-  //     <div>
-  //       <Button>アカウントを作成</Button>
-  //     </div>
-  //     <div className="text-center font-medium text-gray-900">
-  //       すでにアカウントをお持ちですか？
-  //       <Link
-  //         href="/user/login"
-  //         className="font-medium text-indigo-600 hover:text-indigo-500"
-  //       >
-  //         ログイン
-  //       </Link>
-  //     </div>
-  //   </form>
-  // );
 
   return (
     <Form {...form}>

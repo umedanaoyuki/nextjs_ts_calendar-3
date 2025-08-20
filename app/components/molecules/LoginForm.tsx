@@ -28,12 +28,9 @@ const LoginForm = () => {
       actionProps: {
         onSuccess: ({ data }) => {
           if (data === null) return;
-          console.log("Toast発動");
           if (data.success) {
-            console.log({ data });
             toast.success(data.message);
           } else {
-            console.log({ data });
             toast.error(data.message);
           }
           setTimeout(() => {

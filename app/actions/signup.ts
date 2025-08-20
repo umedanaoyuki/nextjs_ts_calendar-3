@@ -16,8 +16,6 @@ export const sigup = actionClient
       password: hashedPassword,
     };
 
-    console.log({ userData });
-
     try {
       await connectDB();
       await UserModel.create(userData);

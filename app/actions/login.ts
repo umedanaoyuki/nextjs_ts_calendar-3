@@ -26,15 +26,9 @@ export const login = actionClient
         };
       }
 
-      console.log({ password });
-      console.log({ savedUserData });
-
       const isPasswordValid = compareSync(password, savedUserData.password);
 
-      console.log({ isPasswordValid });
-
       if (!isPasswordValid) {
-        console.log("パスワードが間違っています");
         return {
           success: false,
           message: "ログイン情報が間違っています",
@@ -51,7 +45,6 @@ export const login = actionClient
 
       const cookie = await cookies();
       cookie.set("token", token, config);
-      console.log("ログイン成功");
 
       return {
         success: true,
