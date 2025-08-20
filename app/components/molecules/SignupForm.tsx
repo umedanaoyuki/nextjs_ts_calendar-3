@@ -3,9 +3,9 @@ import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks";
 import { sigup } from "@/app/actions/signup";
-import { SignupSchema } from "@/app/utils/SignupSchema";
+import { SignupSchema } from "@/app/utils/schemas";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/app/components/Input";
+import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,

@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import { actionClient } from "../lib/safe-action";
 import { UserModel } from "../utils/schemaModels";
 import connectDB from "../utils/database";
-import { SignupSchema } from "../utils/SignupSchema";
+import { SignupSchema } from "../utils/schemas";
 
 export const sigup = actionClient
   .schema(SignupSchema)

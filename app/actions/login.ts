@@ -3,7 +3,7 @@ import connectDB from "../utils/database";
 import { compareSync } from "bcryptjs";
 import { actionClient } from "../lib/safe-action";
 import { UserModel } from "../utils/schemaModels";
-import { LoginSchema } from "../utils/LoginSchema";
+import { LoginSchema } from "../utils/schemas";
 import { generateToken } from "../utils/auth";
 import { cookies } from "next/headers";
 
