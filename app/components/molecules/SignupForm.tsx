@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/form";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { da } from "zod/v4/locales";
+import Link from "next/link";
 
 const SignupForm = () => {
   const router = useRouter();
@@ -99,7 +99,10 @@ const SignupForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={handleSubmitWithAction} className="space-y-8">
+      <form
+        onSubmit={handleSubmitWithAction}
+        className="space-y-8 flex flex-col"
+      >
         <FormField
           control={form.control}
           name="name"
@@ -107,7 +110,10 @@ const SignupForm = () => {
             <FormItem>
               <FormLabel>名前</FormLabel>
               <FormControl>
-                <Input placeholder="なまえを入力してください" {...field} />
+                <Input
+                  placeholder="2文字以上30文字以内で入力してください"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -120,10 +126,7 @@ const SignupForm = () => {
             <FormItem>
               <FormLabel>メールアドレス</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="メールアドレスを入力してください"
-                  {...field}
-                />
+                <Input placeholder="○○○@○○○.co.jpなど" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -136,15 +139,27 @@ const SignupForm = () => {
             <FormItem>
               <FormLabel>パスワード</FormLabel>
               <FormControl>
-                <Input placeholder="パスワードを入力してください" {...field} />
+                <Input
+                  placeholder="8文字以上30文字以内で入力してください"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={action.isPending}>
+        <Button type="submit" disabled={action.isPending} className="">
           {action.isPending ? "作成中..." : "アカウントを作成"}
         </Button>
+        <div className="text-center font-medium text-gray-900">
+          すでにアカウントを持っていますか？
+          <Link
+            href="/user/login"
+            className="font-medium text-indigo-600 hover:text-indigo-500"
+          >
+            ログイン
+          </Link>
+        </div>
       </form>
     </Form>
   );
