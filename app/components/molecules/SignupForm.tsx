@@ -92,6 +92,7 @@ const SignupForm = () => {
               <FormLabel>パスワード</FormLabel>
               <FormControl>
                 <Input
+                  type="password"
                   placeholder="8文字以上30文字以内で入力してください"
                   {...field}
                 />
