@@ -1,7 +1,5 @@
-import { useRegister } from "@/app/actions/useRegister";
-import { Button } from "@/app/components/Button";
-import { Input } from "@/app/components/Input";
-import Link from "next/link";
+"use client";
+import SignupForm from "@/app/components/molecules/SignupForm";
 
 const Register = () => {
   return (
@@ -18,53 +16,7 @@ const Register = () => {
             新しいアカウントを登録してください
           </p>
         </div>
-        <form action={useRegister} className="mt-8 space-y-6">
-          <div className="rounded-md -space-y-px">
-            <div>
-              <label htmlFor="name">名前</label>
-              <Input
-                id="name"
-                name="name"
-                type="text"
-                required={true}
-                placeholder="名前"
-              />
-            </div>
-            <div>
-              <label htmlFor="email">メールアドレス</label>
-              <Input
-                id="email"
-                name="email"
-                type="text"
-                required={true}
-                placeholder="メールアドレス"
-              />
-            </div>
-            <div>
-              <label htmlFor="password">パスワード</label>
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                required={true}
-                placeholder="パスワード"
-              />
-            </div>
-          </div>
-
-          <div>
-            <Button>アカウントを作成</Button>
-          </div>
-          <div className="text-center font-medium text-gray-900">
-            すでにアカウントをお持ちですか？
-            <Link
-              href="/user/login"
-              className="font-medium text-indigo-600 hover:text-indigo-500"
-            >
-              ログイン
-            </Link>
-          </div>
-        </form>
+        <SignupForm />
       </div>
     </div>
   );

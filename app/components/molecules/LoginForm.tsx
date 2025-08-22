@@ -2,8 +2,8 @@
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks";
-import { sigup } from "@/app/actions/signup";
-import { SignupSchema } from "@/app/utils/schemas";
+import { login } from "@/app/actions/login";
+import { LoginSchema } from "@/app/utils/schemas";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -18,12 +18,12 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Link from "next/link";
 
-const SignupForm = () => {
+const LoginForm = () => {
   const router = useRouter();
 
   const { form, action, handleSubmitWithAction } = useHookFormAction(
-    sigup,
-    zodResolver(SignupSchema),
+    login,
+    zodResolver(LoginSchema),
     {
       actionProps: {
         onSuccess: ({ data }) => {
@@ -34,13 +34,12 @@ const SignupForm = () => {
             toast.error(data.message);
           }
           setTimeout(() => {
-            router.push("/user/login");
-          }, 1500);
+            router.push("/");
+          }, 1000);
         },
       },
       formProps: {
         defaultValues: {
-          name: "",
           email: "",
           password: "",
         },
@@ -55,22 +54,6 @@ const SignupForm = () => {
         onSubmit={handleSubmitWithAction}
         className="space-y-8 flex flex-col"
       >
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>名前</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="2文字以上30文字以内で入力してください"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
         <FormField
           control={form.control}
           name="email"
@@ -102,15 +85,15 @@ const SignupForm = () => {
           )}
         />
         <Button type="submit" disabled={action.isPending} className="">
-          {action.isPending ? "作成中..." : "アカウントを作成"}
+          {action.isPending ? "ログイン中" : "ログイン"}
         </Button>
         <div className="text-center font-medium text-gray-900">
-          すでにアカウントを持っていますか？
+          アカウントを持っていませんか？
           <Link
-            href="/user/login"
+            href="/user/register"
             className="font-medium text-indigo-600 hover:text-indigo-500"
           >
-            ログイン
+            新規作成
           </Link>
         </div>
       </form>
@@ -118,4 +101,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default LoginForm;
