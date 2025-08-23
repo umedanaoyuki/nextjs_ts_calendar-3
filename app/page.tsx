@@ -49,22 +49,29 @@ const CalendarPage = () => {
   }, [currentDate, allSchedules]);
 
   return (
-    <>
-      <h1 className=" font-bold text-3xl mb-5">{`${
-        getMonth(currentDate) + 1
-      }月`}</h1>
-      <CalendarNav setCurrentDate={setCurrentDate} addSchedule={addSchedule} />
-      <table className="w-[80%] border-collapse border-2 border-solid border-lime-800 table-fixed">
-        <CalendarHeader />
-        <CalenderBody
-          currentDate={currentDate}
-          dateList={dateList}
-          setDateList={setDateList}
-          deleteSchedule={deleteSchedule}
-          changeSchedule={changeSchedule}
+    <div className="min-h-screen flex flex-col items-center justify-center p-8">
+      <div className="w-full max-w-6xl">
+        <h1 className="font-bold text-3xl mb-5 text-center">{`${
+          getMonth(currentDate) + 1
+        }月`}</h1>
+        <CalendarNav
+          setCurrentDate={setCurrentDate}
+          addSchedule={addSchedule}
         />
-      </table>
-    </>
+        <div className="flex justify-center">
+          <table className="w-full max-w-5xl border-collapse border-2 border-solid border-lime-800 table-fixed">
+            <CalendarHeader />
+            <CalenderBody
+              currentDate={currentDate}
+              dateList={dateList}
+              setDateList={setDateList}
+              deleteSchedule={deleteSchedule}
+              changeSchedule={changeSchedule}
+            />
+          </table>
+        </div>
+      </div>
+    </div>
   );
 };
 
