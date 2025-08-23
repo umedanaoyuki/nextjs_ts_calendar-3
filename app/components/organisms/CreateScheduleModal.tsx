@@ -34,7 +34,7 @@ export const CreateScheduleModal = ({
       isOpen={isOpen}
       style={customStyles}
       onRequestClose={closeModal}
-      appElement={document.getElementById("root") as HTMLElement}
+      ariaHideApp={false}
     >
       <div>
         <h3 className="text-center text-3xl text-lime-800 font-bold pb-5">

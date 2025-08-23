@@ -88,7 +88,7 @@ export const ScheduleDetailsModal = ({
       isOpen={!!selectedSchedule}
       style={customStyles}
       onRequestClose={closeModal}
-      appElement={document.getElementById("root") as HTMLElement}
+      ariaHideApp={false}
     >
       {selectedSchedule && (
         <div className="flex flex-col gap-8">
