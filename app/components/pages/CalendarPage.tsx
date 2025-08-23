@@ -1,4 +1,3 @@
-"use client";
 import {
   eachDayOfInterval,
   eachWeekOfInterval,
@@ -8,15 +7,15 @@ import {
   isSameDay,
   startOfMonth,
 } from "date-fns";
+import { CalendarHeader } from "../organisms/CalendarHeader";
+import { CalenderBody } from "../organisms/CalenderBody";
+import { useCalendar } from "../../hooks/useCalendar";
 import { useEffect, useState } from "react";
-import { CalendarNav } from "./components/organisms/CalendarNav";
-import { DateList, Schedule } from "./types/calendar";
-import { getScheduleList } from "./api/calendar";
-import { CalendarHeader } from "./components/organisms/CalendarHeader";
-import { CalenderBody } from "./components/organisms/CalenderBody";
-import { useCalendar } from "./hooks/useCalendar";
+import { CalendarNav } from "../organisms/CalendarNav";
+import { DateList, Schedule } from "../../types/calendar";
+import { getScheduleList } from "../../api/calendar";
 
-const CalendarPage = () => {
+export const CalendarPage = () => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const [allSchedules, setAllSchedules] = useState<Schedule[]>(() =>
     getScheduleList()
@@ -67,5 +66,3 @@ const CalendarPage = () => {
     </>
   );
 };
-
-export default CalendarPage;
