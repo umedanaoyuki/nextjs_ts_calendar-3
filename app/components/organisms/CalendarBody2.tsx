@@ -1,22 +1,15 @@
-import { cn } from "@/lib/utils";
-import { DateList, Schedule } from "../../types/calendar";
-import { getDate, isSameDay } from "date-fns";
 import React from "react";
-
+import { cn } from "@/lib/utils";
+import { DateList } from "../../types/calendar";
+import { getDate, isSameDay } from "date-fns";
 interface CalendarBody2Props {
   currentDate: Date;
   dateList: DateList;
-  setDateList: React.Dispatch<React.SetStateAction<DateList>>;
-  deleteSchedule: (scheduleId: string) => void;
-  changeSchedule: (scheduleId: string, newSchedule: Schedule) => void;
 }
 
 export const CalendarBody2 = ({
   currentDate,
   dateList,
-  setDateList,
-  deleteSchedule,
-  changeSchedule,
 }: CalendarBody2Props) => {
   const today = new Date();
 

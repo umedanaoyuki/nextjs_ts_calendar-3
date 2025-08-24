@@ -4,34 +4,16 @@ import {
   eachWeekOfInterval,
   endOfMonth,
   endOfWeek,
-  getMonth,
   isSameDay,
   startOfMonth,
 } from "date-fns";
 import { useEffect, useState } from "react";
-import { CalendarNav } from "./components/organisms/CalendarNav";
 import { DateList, Schedule } from "./types/calendar";
 import { getScheduleList } from "./api/calendar";
-import { CalendarHeader } from "./components/organisms/CalendarHeader";
-import { CalenderBody } from "./components/organisms/CalenderBody";
 import { useCalendar } from "./hooks/useCalendar";
-import { cn } from "@/lib/utils";
 import { CalendarHeader2 } from "./components/organisms/CalendarHeader2";
 import { CalendarBody2 } from "./components/organisms/CalendarBody2";
 import { Header } from "./components/organisms/Header";
-
-const events = {
-  5: [
-    { title: "会議", time: "10:00", color: "blue" },
-    { title: "ランチミーティング", time: "12:30", color: "green" },
-  ],
-  12: [{ title: "プレゼン", time: "14:00", color: "purple" }],
-  15: [
-    { title: "貸切", time: "終日", color: "red" },
-    { title: "歓迎会", time: "10:00", color: "orange" },
-  ],
-  20: [{ title: "研修", time: "13:00", color: "indigo" }],
-};
 
 const CalendarPage = () => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
@@ -66,27 +48,12 @@ const CalendarPage = () => {
     setDateList(newDateList);
   }, [currentDate, allSchedules]);
 
-  //
-
-  const days = Array.from({ length: 35 }, (_, i) => i + 1);
-
-  const today = new Date();
-  const todayDate = today.getDate();
-
-  console.log({ currentDate });
-
   return (
     <div className="flex h-screen flex-col bg-linear-to-br from-indigo-50 via-purple-50 to-pink-50">
       <Header currentDate={currentDate} setCurrentDate={setCurrentDate} />
       <div className="mx-0.5 my-2 grid flex-1 grid-cols-7 overflow-hidden rounded-2xl bg-white shadow-xl sm:m-4">
         <CalendarHeader2 />
-        <CalendarBody2
-          currentDate={currentDate}
-          dateList={dateList}
-          setDateList={setDateList}
-          deleteSchedule={deleteSchedule}
-          changeSchedule={changeSchedule}
-        />
+        <CalendarBody2 currentDate={currentDate} dateList={dateList} />
         {/* {days.map((day) => {
           return (
             <div
