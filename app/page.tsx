@@ -11,8 +11,8 @@ import { useEffect, useState } from "react";
 import { DateList, Schedule } from "./types/calendar";
 import { getScheduleList } from "./api/calendar";
 import { useCalendar } from "./hooks/useCalendar";
-import { CalendarHeader2 } from "./components/organisms/CalendarHeader2";
-import { CalendarBody2 } from "./components/organisms/CalendarBody2";
+import { CalendarHeader } from "./components/organisms/CalendarHeader";
+import { CalendarBody } from "./components/organisms/CalendarBody";
 import { Header } from "./components/organisms/Header";
 
 const CalendarPage = () => {
@@ -56,8 +56,8 @@ const CalendarPage = () => {
         addSchedule={addSchedule}
       />
       <div className="mx-0.5 my-2 grid flex-1 grid-cols-7 overflow-hidden rounded-2xl bg-white shadow-xl sm:m-4">
-        <CalendarHeader2 />
-        <CalendarBody2
+        <CalendarHeader />
+        <CalendarBody
           currentDate={currentDate}
           dateList={dateList}
           deleteSchedule={deleteSchedule}

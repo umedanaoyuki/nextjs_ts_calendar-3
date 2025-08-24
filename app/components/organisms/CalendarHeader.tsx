@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export const CalendarHeader2 = () => {
+export const CalendarHeader = () => {
   const weekDays = ["日", "月", "火", "水", "木", "金", "土"];
   return (
     <>

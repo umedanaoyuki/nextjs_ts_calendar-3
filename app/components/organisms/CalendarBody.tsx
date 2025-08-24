@@ -13,7 +13,7 @@ interface CalendarBody2Props {
   ) => void;
 }
 
-export const CalendarBody2 = ({
+export const CalendarBody = ({
   currentDate,
   dateList,
   deleteSchedule,
