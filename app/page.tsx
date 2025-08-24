@@ -46,6 +46,7 @@ const CalendarPage = () => {
     setAllSchedules,
   });
 
+  // ここで日付のリストを作成する
   useEffect(() => {
     const monthOfSundayList = eachWeekOfInterval({
       start: startOfMonth(currentDate),
