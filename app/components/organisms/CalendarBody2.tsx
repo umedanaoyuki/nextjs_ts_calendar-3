@@ -1,17 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { cn } from "@/lib/utils";
-import { DateList } from "../../types/calendar";
+import { DateList, Schedule } from "../../types/calendar";
 import { getDate, isSameDay } from "date-fns";
+import { ScheduleDetailsModal } from "./ScheduleDetailsModal";
 interface CalendarBody2Props {
   currentDate: Date;
   dateList: DateList;
+  deleteSchedule: (schedule: Schedule) => void;
+  changeSchedule: (
+    originalSchedule: Schedule | null,
+    selectedSchedule: Schedule
+  ) => void;
 }
 
 export const CalendarBody2 = ({
   currentDate,
   dateList,
+  deleteSchedule,
+  changeSchedule,
 }: CalendarBody2Props) => {
   const today = new Date();
+
+  const [selectedSchedule, setSelectedSchedule] = useState<Schedule | null>(
+    null
+  );
+
+  // 編集ボタンの表示について（初期は編集モードではない）
+  const [isEditting, setIsEditting] = useState<boolean>(false);
+
+  const closeModal = () => {
+    setSelectedSchedule(null);
+    setIsEditting(false);
+  };
+
+  const handleIsEdittingChange = (isEditting: boolean) => {
+    setIsEditting(!isEditting);
+  };
 
   return (
     <>
@@ -58,6 +82,15 @@ export const CalendarBody2 = ({
           })}
         </React.Fragment>
       ))}
+      <ScheduleDetailsModal
+        selectedSchedule={selectedSchedule}
+        closeModal={closeModal}
+        deleteSchedule={deleteSchedule}
+        isEditting={isEditting}
+        setSelectedSchedule={setSelectedSchedule}
+        handleIsEdittingChange={handleIsEdittingChange}
+        changeSchedule={changeSchedule}
+      />
     </>
   );
 };
