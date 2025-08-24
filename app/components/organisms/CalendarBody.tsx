@@ -73,6 +73,7 @@ export const CalendarBody = ({
                         <button
                           key={schedule.id}
                           onClick={() => setSelectedSchedule(schedule)}
+                          className="w-full"
                         >
                           <span className="hidden truncate sm:inline">
                             {schedule.title}
