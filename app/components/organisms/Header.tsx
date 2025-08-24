@@ -19,8 +19,6 @@ export const Header = ({
   const changeNextMonth = () =>
     setCurrentDate((prevDate) => addMonths(prevDate, 1));
 
-  console.log({ isOpen });
-
   return (
     <header className="flex flex-col justify-between gap-4 bg-white p-4 sm:flex-row">
       <h1 className="bg-linear-to-br from-purple-600 to-pink-600 bg-clip-text text-center text-3xl font-bold text-transparent">
