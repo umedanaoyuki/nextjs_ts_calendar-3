@@ -49,10 +49,10 @@ export const CalenderBody = ({
             {oneWeek.map((item, index) => (
               <td
                 key={`day-${getDate(oneWeek[0].date)}-${index}`}
-                className="bg-white h-[10vh] border-2 border-solid border-lime-800"
+                className="bg-white h-[10vh] border-2 border-solid border-lime-800 relative"
               >
                 <span
-                  className={`inline-block w-[20px] leading-[20px] text-center ${dateColor(
+                  className={`absolute top-1 inline-block w-[20px] leading-[20px] text-center ${dateColor(
                     item.date,
                     currentDate
                   )}`}
