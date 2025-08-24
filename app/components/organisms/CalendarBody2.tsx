@@ -70,9 +70,14 @@ export const CalendarBody2 = ({
                         key={schedule.id}
                         className="flex gap-1 rounded-md bg-blue-100 p-1 text-xs text-blue-700"
                       >
-                        <span className="hidden truncate sm:inline">
-                          {schedule.title}
-                        </span>
+                        <button
+                          key={schedule.id}
+                          onClick={() => setSelectedSchedule(schedule)}
+                        >
+                          <span className="hidden truncate sm:inline">
+                            {schedule.title}
+                          </span>
+                        </button>
                       </div>
                     );
                   })}
