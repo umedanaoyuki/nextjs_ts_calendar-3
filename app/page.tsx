@@ -17,6 +17,7 @@ import { CalenderBody } from "./components/organisms/CalenderBody";
 import { useCalendar } from "./hooks/useCalendar";
 import { cn } from "@/lib/utils";
 import { CalendarHeader2 } from "./components/organisms/CalendarHeader2";
+import { CalendarBody2 } from "./components/organisms/CalendarBody2";
 import { Header } from "./components/organisms/Header";
 
 const events = {
@@ -66,7 +67,6 @@ const CalendarPage = () => {
 
   //
 
-  const weekDays = ["日", "月", "火", "水", "木", "金", "土"];
   const days = Array.from({ length: 35 }, (_, i) => i + 1);
 
   const today = new Date();
@@ -79,7 +79,14 @@ const CalendarPage = () => {
       <Header currentDate={currentDate} setCurrentDate={setCurrentDate} />
       <div className="mx-0.5 my-2 grid flex-1 grid-cols-7 overflow-hidden rounded-2xl bg-white shadow-xl sm:m-4">
         <CalendarHeader2 />
-        {days.map((day) => {
+        <CalendarBody2
+          currentDate={currentDate}
+          dateList={dateList}
+          setDateList={setDateList}
+          deleteSchedule={deleteSchedule}
+          changeSchedule={changeSchedule}
+        />
+        {/* {days.map((day) => {
           return (
             <div
               key={day}
@@ -124,7 +131,7 @@ const CalendarPage = () => {
               </div>
             </div>
           );
-        })}
+        })} */}
       </div>
     </div>
   );
