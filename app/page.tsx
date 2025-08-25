@@ -16,6 +16,7 @@ import { CalendarBody } from "./components/organisms/CalendarBody";
 import { Header } from "./components/organisms/Header";
 
 const CalendarPage = () => {
+  const [isWeekView, setIsWeekView] = useState(true);
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const [allSchedules, setAllSchedules] = useState<Schedule[]>(() =>
     getScheduleList()
@@ -53,7 +54,9 @@ const CalendarPage = () => {
       <Header
         currentDate={currentDate}
         setCurrentDate={setCurrentDate}
+        setIsWeekView={setIsWeekView}
         addSchedule={addSchedule}
+        isWeekView={isWeekView}
       />
       <div className="mx-0.5 my-2 grid flex-1 grid-cols-7 overflow-hidden rounded-2xl bg-white shadow-xl sm:m-4">
         <CalendarHeader />
@@ -62,6 +65,7 @@ const CalendarPage = () => {
           dateList={dateList}
           deleteSchedule={deleteSchedule}
           changeSchedule={changeSchedule}
+          isWeekView={isWeekView}
         />
       </div>
     </div>

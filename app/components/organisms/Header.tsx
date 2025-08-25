@@ -7,10 +7,14 @@ export const Header = ({
   currentDate,
   setCurrentDate,
   addSchedule,
+  isWeekView,
+  setIsWeekView,
 }: {
   currentDate: Date;
   setCurrentDate: Dispatch<SetStateAction<Date>>;
   addSchedule: (schedule: Schedule) => void;
+  setIsWeekView: Dispatch<SetStateAction<boolean>>;
+  isWeekView: boolean;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
@@ -59,6 +63,12 @@ export const Header = ({
           closeModal={closeModal}
           addSchedule={addSchedule}
         />
+        <button
+          className="rounded-lg bg-white px-4 py-2 text-purple-600 shadow-sm transition-colors duration-500 hover:bg-purple-50"
+          onClick={() => setIsWeekView(!isWeekView)}
+        >
+          月 ⇔ 週
+        </button>
       </div>
     </header>
   );
