@@ -1,7 +1,15 @@
-import { addMonths, getMonth, getYear, addWeeks, getWeek } from "date-fns";
+import { addMonths, getMonth, getYear, addWeeks } from "date-fns";
 import { Dispatch, SetStateAction, useState } from "react";
 import { CreateScheduleModal } from "./CreateScheduleModal";
 import { Schedule } from "@/app/types/calendar";
+
+type HeaderProps = {
+  currentDate: Date;
+  setCurrentDate: Dispatch<SetStateAction<Date>>;
+  addSchedule: (schedule: Schedule) => void;
+  setIsWeekView: Dispatch<SetStateAction<boolean>>;
+  isWeekView: boolean;
+};
 
 export const Header = ({
   currentDate,
@@ -9,15 +17,10 @@ export const Header = ({
   addSchedule,
   isWeekView,
   setIsWeekView,
-}: {
-  currentDate: Date;
-  setCurrentDate: Dispatch<SetStateAction<Date>>;
-  addSchedule: (schedule: Schedule) => void;
-  setIsWeekView: Dispatch<SetStateAction<boolean>>;
-  isWeekView: boolean;
-}) => {
+}: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
+
   const changePrevPeriod = () => {
     if (isWeekView) {
       setCurrentDate((prevDate) => addWeeks(prevDate, -1));

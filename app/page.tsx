@@ -17,7 +17,7 @@ import { CalendarBody } from "./components/organisms/CalendarBody";
 import { Header } from "./components/organisms/Header";
 
 const CalendarPage = () => {
-  const [isWeekView, setIsWeekView] = useState(true);
+  const [isWeekView, setIsWeekView] = useState(false);
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const [allSchedules, setAllSchedules] = useState<Schedule[]>(() =>
     getScheduleList()
@@ -30,13 +30,11 @@ const CalendarPage = () => {
     setAllSchedules,
   });
 
-  // ここで日付のリストを作成する
   useEffect(() => {
     let newDateList: DateList;
 
     if (isWeekView) {
-      // 週表示: 現在の週のみを表示
-      const currentWeekStart = startOfWeek(currentDate, { weekStartsOn: 0 }); // 日曜日開始
+      const currentWeekStart = startOfWeek(currentDate, { weekStartsOn: 0 });
       const currentWeekEnd = endOfWeek(currentDate, { weekStartsOn: 0 });
 
       const weekDays = eachDayOfInterval({
@@ -47,11 +45,12 @@ const CalendarPage = () => {
       newDateList = [
         weekDays.map((date) => ({
           date,
-          schedules: allSchedules.filter((sch) => isSameDay(sch.date, date)),
+          schedules: allSchedules.filter((schedule) =>
+            isSameDay(schedule.date, date)
+          ),
         })),
       ];
     } else {
-      // 月表示: 月全体を表示
       const monthOfSundayList = eachWeekOfInterval({
         start: startOfMonth(currentDate),
         end: endOfMonth(currentDate),
@@ -63,7 +62,9 @@ const CalendarPage = () => {
           end: endOfWeek(date),
         }).map((date) => ({
           date,
-          schedules: allSchedules.filter((sch) => isSameDay(sch.date, date)),
+          schedules: allSchedules.filter((schedule) =>
+            isSameDay(schedule.date, date)
+          ),
         }));
       });
     }

@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { DateList, Schedule } from "../../types/calendar";
 import { getDate, isSameDay } from "date-fns";
 import { ScheduleDetailsModal } from "./ScheduleDetailsModal";
-interface CalendarBody2Props {
+type CalendarBodyProps = {
   currentDate: Date;
   dateList: DateList;
   deleteSchedule: (schedule: Schedule) => void;
@@ -12,7 +12,7 @@ interface CalendarBody2Props {
     selectedSchedule: Schedule
   ) => void;
   isWeekView: boolean;
-}
+};
 
 export const CalendarBody = ({
   currentDate,
@@ -20,15 +20,13 @@ export const CalendarBody = ({
   deleteSchedule,
   changeSchedule,
   isWeekView,
-}: CalendarBody2Props) => {
-  const today = new Date();
-
+}: CalendarBodyProps) => {
   const [selectedSchedule, setSelectedSchedule] = useState<Schedule | null>(
     null
   );
-
-  // 編集ボタンの表示について（初期は編集モードではない）
   const [isEditting, setIsEditting] = useState<boolean>(false);
+
+  const today = new Date();
 
   const closeModal = () => {
     setSelectedSchedule(null);
