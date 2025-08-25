@@ -56,7 +56,8 @@ export const CalendarBody = ({
                     className={cn(
                       "flex flex-col items-center border-r border-b border-solid border-gray-100 p-0 pt-1 sm:items-start sm:p-2 sm:pt-2",
                       !isCurrentMonth ? "bg-gray-50/50" : "bg-white",
-                      isToday && "ring-2 ring-purple-400 ring-inset"
+                      isToday && "ring-2 ring-purple-400 ring-inset",
+                      dayIndex === 0 && "border-l border-solid border-gray-100"
                     )}
                   >
                     <span
@@ -108,7 +109,8 @@ export const CalendarBody = ({
                     className={cn(
                       "flex flex-col items-center border-r border-b border-solid border-gray-100 p-0 pt-1 sm:items-start sm:p-2 sm:pt-2",
                       !isCurrentMonth ? "bg-gray-50/50" : "bg-white",
-                      isToday && "ring-2 ring-purple-400 ring-inset"
+                      isToday && "ring-2 ring-purple-400 ring-inset",
+                      dayIndex === 0 && "border-l border-solid border-gray-100"
                     )}
                   >
                     <span

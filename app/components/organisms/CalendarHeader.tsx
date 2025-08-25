@@ -9,11 +9,10 @@ export const CalendarHeader = ({ isWeekView }: { isWeekView: boolean }) => {
           <div
             key={day}
             className={cn(
-              "border-b border-solid border-gray-200 bg-gray-50/80 text-center",
+              "border-r border-solid border-gray-200 bg-gray-50/80 text-center p-2",
               i === 0 && "text-red-500",
               i === 6 && "text-blue-500",
-              i !== 0 && i !== 6 && "text-gray-700",
-              isWeekView && "h-1/7"
+              i !== 0 && i !== 6 && "text-gray-700"
             )}
           >
             {day}

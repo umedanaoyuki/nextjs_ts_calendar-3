@@ -54,11 +54,7 @@ export const Header = ({
             ←
           </button>
           <span>
-            {isWeekView
-              ? `${getYear(currentDate)}年${
-                  getMonth(currentDate) + 1
-                }月第${getWeek(currentDate)}週`
-              : `${getYear(currentDate)}年${getMonth(currentDate) + 1}月`}
+            {`${getYear(currentDate)}年${getMonth(currentDate) + 1}月`}
           </span>
           <button
             className="flex h-5 w-5 items-center justify-center rounded-full bg-white transition-colors duration-500 hover:bg-purple-100"

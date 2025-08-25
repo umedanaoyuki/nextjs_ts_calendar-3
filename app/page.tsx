@@ -80,15 +80,19 @@ const CalendarPage = () => {
         addSchedule={addSchedule}
         isWeekView={isWeekView}
       />
-      <div className="mx-0.5 my-2 grid flex-1 grid-cols-7 overflow-hidden rounded-2xl bg-white shadow-xl sm:m-4">
-        <CalendarHeader isWeekView={isWeekView} />
-        <CalendarBody
-          currentDate={currentDate}
-          dateList={dateList}
-          deleteSchedule={deleteSchedule}
-          changeSchedule={changeSchedule}
-          isWeekView={isWeekView}
-        />
+      <div className="mx-0.5 my-2 flex flex-1 flex-col overflow-hidden rounded-2xl bg-white shadow-xl sm:m-4">
+        <div className="grid grid-cols-7">
+          <CalendarHeader isWeekView={isWeekView} />
+        </div>
+        <div className="grid flex-1 grid-cols-7">
+          <CalendarBody
+            currentDate={currentDate}
+            dateList={dateList}
+            deleteSchedule={deleteSchedule}
+            changeSchedule={changeSchedule}
+            isWeekView={isWeekView}
+          />
+        </div>
       </div>
     </div>
   );
