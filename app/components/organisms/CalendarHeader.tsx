@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export const CalendarHeader = () => {
+export const CalendarHeader = ({ isWeekView }: { isWeekView: boolean }) => {
   const weekDays = ["日", "月", "火", "水", "木", "金", "土"];
   return (
     <>
@@ -12,7 +12,8 @@ export const CalendarHeader = () => {
               "border-b border-solid border-gray-200 bg-gray-50/80 text-center",
               i === 0 && "text-red-500",
               i === 6 && "text-blue-500",
-              i !== 0 && i !== 6 && "text-gray-700"
+              i !== 0 && i !== 6 && "text-gray-700",
+              isWeekView && "h-1/7"
             )}
           >
             {day}
