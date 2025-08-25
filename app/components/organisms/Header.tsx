@@ -1,4 +1,4 @@
-import { addMonths, getMonth, getYear } from "date-fns";
+import { addMonths, getMonth, getYear, addWeeks, getWeek } from "date-fns";
 import { Dispatch, SetStateAction, useState } from "react";
 import { CreateScheduleModal } from "./CreateScheduleModal";
 import { Schedule } from "@/app/types/calendar";
@@ -18,10 +18,21 @@ export const Header = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
-  const changePrevMonth = () =>
-    setCurrentDate((prevDate) => addMonths(prevDate, -1));
-  const changeNextMonth = () =>
-    setCurrentDate((prevDate) => addMonths(prevDate, 1));
+  const changePrevPeriod = () => {
+    if (isWeekView) {
+      setCurrentDate((prevDate) => addWeeks(prevDate, -1));
+    } else {
+      setCurrentDate((prevDate) => addMonths(prevDate, -1));
+    }
+  };
+
+  const changeNextPeriod = () => {
+    if (isWeekView) {
+      setCurrentDate((prevDate) => addWeeks(prevDate, 1));
+    } else {
+      setCurrentDate((prevDate) => addMonths(prevDate, 1));
+    }
+  };
 
   return (
     <header className="flex flex-col justify-between gap-4 bg-white p-4 sm:flex-row">
@@ -38,16 +49,20 @@ export const Header = ({
         <div className="flex items-center rounded-lg px-4 py-2 shadow-sm">
           <button
             className="flex h-5 w-5 items-center justify-center rounded-full bg-white transition-colors duration-500 hover:bg-purple-100"
-            onClick={changePrevMonth}
+            onClick={changePrevPeriod}
           >
             ←
           </button>
-          <span>{`${getYear(currentDate)}年${
-            getMonth(currentDate) + 1
-          }月`}</span>
+          <span>
+            {isWeekView
+              ? `${getYear(currentDate)}年${
+                  getMonth(currentDate) + 1
+                }月第${getWeek(currentDate)}週`
+              : `${getYear(currentDate)}年${getMonth(currentDate) + 1}月`}
+          </span>
           <button
             className="flex h-5 w-5 items-center justify-center rounded-full bg-white transition-colors duration-500 hover:bg-purple-100"
-            onClick={changeNextMonth}
+            onClick={changeNextPeriod}
           >
             →
           </button>
