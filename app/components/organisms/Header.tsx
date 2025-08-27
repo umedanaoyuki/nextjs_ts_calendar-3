@@ -2,6 +2,9 @@ import { addMonths, getMonth, getYear, addWeeks } from "date-fns";
 import { Dispatch, SetStateAction, useState } from "react";
 import { CreateScheduleModal } from "./CreateScheduleModal";
 import { Schedule } from "@/app/types/calendar";
+import { logout } from "@/app/actions/logout";
+import { toast } from "sonner";
+import { redirect } from "next/navigation";
 
 type HeaderProps = {
   currentDate: Date;
@@ -34,6 +37,20 @@ export const Header = ({
       setCurrentDate((prevDate) => addWeeks(prevDate, 1));
     } else {
       setCurrentDate((prevDate) => addMonths(prevDate, 1));
+    }
+  };
+
+  const actionLogout = async () => {
+    const result = await logout();
+
+    if (result.success) {
+      toast.success(result.message);
+
+      setTimeout(() => {
+        redirect("/user/login");
+      }, 1500);
+    } else {
+      toast.error(result.message);
     }
   };
 
@@ -82,6 +99,12 @@ export const Header = ({
           onClick={() => setIsWeekView(!isWeekView)}
         >
           月 ⇔ 週
+        </button>
+        <button
+          className="rounded-lg bg-gray-300 px-4 py-2 text-black shadow-sm  hover:bg-gray-200"
+          onClick={actionLogout}
+        >
+          ログアウト
         </button>
       </div>
     </header>
