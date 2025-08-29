@@ -1,9 +1,9 @@
 import Modal from "react-modal";
 import { Schedule } from "../../types/calendar";
-import { PrimaryBtn } from "../atoms/PrimaryBtn";
 import { Input } from "../atoms/Input";
 import { Textarea } from "../atoms/Textarea";
 import { useCreateSchedule } from "../../hooks/useCreateSchedule";
+import { Button } from "@/components/ui/button";
 
 type PropsType = {
   isOpen: boolean;
@@ -37,7 +37,7 @@ export const CreateScheduleModal = ({
       ariaHideApp={false}
     >
       <div>
-        <h3 className="text-center text-3xl text-lime-800 font-bold pb-5">
+        <h3 className="bg-linear-to-br from-purple-600 to-pink-600 bg-clip-text text-center text-3xl font-bold text-transparent">
           予定作成
         </h3>
         {errorMessage && (
@@ -45,9 +45,12 @@ export const CreateScheduleModal = ({
             {errorMessage}
           </div>
         )}
-        <form className="flex flex-col gap-8" onSubmit={handleCreateSchedule}>
+        <form
+          className="flex flex-col gap-8 mt-8"
+          onSubmit={handleCreateSchedule}
+        >
           <div className="w-[100%] flex items-center">
-            <label htmlFor="title-form" className="w-[30%] text-lime-800">
+            <label htmlFor="title-form" className="w-[30%] text-purple-800">
               タイトル
             </label>
             <Input
@@ -59,7 +62,7 @@ export const CreateScheduleModal = ({
             />
           </div>
           <div className="w-[100%] flex items-center">
-            <label htmlFor="date-form" className="w-[30%] text-lime-800">
+            <label htmlFor="date-form" className="w-[30%] text-purple-800">
               日付
             </label>
             <Input
@@ -71,7 +74,10 @@ export const CreateScheduleModal = ({
             />
           </div>
           <div className="w-[100%] flex items-center">
-            <label htmlFor="description-form" className="w-[30%] text-lime-800">
+            <label
+              htmlFor="description-form"
+              className="w-[30%] text-purple-800"
+            >
               内容
             </label>
             <Textarea
@@ -79,13 +85,13 @@ export const CreateScheduleModal = ({
               name="description"
               value={newSchedule.description}
               onChange={changeNewSchedule}
-              className="w-full border-4 border-solid border-lime-800 rounded-md p-2"
+              className="w-full border-4 border-solid border-purple-800 rounded-md p-2"
             />
           </div>
           <div className="flex justify-center">
-            <PrimaryBtn size="lg" onClick={() => null}>
+            <Button size="lg" onClick={() => null}>
               作成
-            </PrimaryBtn>
+            </Button>
           </div>
         </form>
       </div>
