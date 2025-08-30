@@ -1,9 +1,9 @@
 import Modal from "react-modal";
 import { Schedule } from "../../types/calendar";
-import { Input } from "../atoms/Input";
 import { Textarea } from "../atoms/Textarea";
 import { useCreateSchedule } from "../../hooks/useCreateSchedule";
 import { Button } from "@/components/ui/button";
+import { ModalInput } from "@/components/ui/input";
 
 type PropsType = {
   isOpen: boolean;
@@ -53,7 +53,7 @@ export const CreateScheduleModal = ({
             <label htmlFor="title-form" className="w-[30%] text-purple-800">
               タイトル
             </label>
-            <Input
+            <ModalInput
               id="title-form"
               name="title"
               type="text"
@@ -65,7 +65,7 @@ export const CreateScheduleModal = ({
             <label htmlFor="date-form" className="w-[30%] text-purple-800">
               日付
             </label>
-            <Input
+            <ModalInput
               id="date-form"
               name="date"
               type="date"
