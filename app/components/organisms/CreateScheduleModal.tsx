@@ -3,7 +3,7 @@ import { Schedule } from "../../types/calendar";
 import { Textarea } from "../atoms/Textarea";
 import { useCreateSchedule } from "../../hooks/useCreateSchedule";
 import { Button } from "@/components/ui/button";
-import { Input, ModalInput } from "@/components/ui/input";
+import { Input } from "@/components/ui/input";
 
 type PropsType = {
   isOpen: boolean;
@@ -66,12 +66,13 @@ export const CreateScheduleModal = ({
             <label htmlFor="date-form" className="w-[30%] text-purple-800">
               日付
             </label>
-            <ModalInput
+            <Input
               id="date-form"
               name="date"
               type="date"
               value={newSchedule.date}
               onChange={changeNewSchedule}
+              color="purple-800"
             />
           </div>
           <div className="w-[100%] flex items-center">

@@ -13,10 +13,10 @@ function Input({ className, type, color, ...props }: InputProps) {
       data-slot="input"
       className={cn(
         "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-        color ? `border-${color}` : "border-input",
-        color
-          ? `focus-visible:border-${color} focus-visible:ring-${color}/50 focus-visible:ring-[3px]`
-          : "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+        `border-${color ? color : "input"}`,
+        `focus-visible:border-${color ? color : "ring"} focus-visible:ring-${
+          color ? color : "ring"
+        }/50 focus-visible:ring-[3px]`,
         "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
         className
       )}
@@ -25,24 +25,4 @@ function Input({ className, type, color, ...props }: InputProps) {
   );
 }
 
-function ModalInput({
-  className,
-  type,
-  ...props
-}: React.ComponentProps<"input">) {
-  return (
-    <input
-      type={type}
-      data-slot="input"
-      className={cn(
-        "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-purple-800 flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-        "focus-visible:border-purple-800 focus-visible:ring-purple-800/50 focus-visible:ring-[3px]",
-        "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-        className
-      )}
-      {...props}
-    />
-  );
-}
-
-export { Input, ModalInput };
+export { Input };
