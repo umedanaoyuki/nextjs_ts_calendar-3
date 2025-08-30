@@ -43,6 +43,7 @@ const SignupForm = () => {
           name: "",
           email: "",
           password: "",
+          passwordConfirm: "",
         },
       },
       errorMapProps: {},
@@ -88,17 +89,38 @@ const SignupForm = () => {
           control={form.control}
           name="password"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>パスワード</FormLabel>
-              <FormControl>
-                <Input
-                  type="password"
-                  placeholder="8文字以上30文字以内で入力してください"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
+            <>
+              <FormItem>
+                <FormLabel>パスワード</FormLabel>
+                <FormControl>
+                  <Input
+                    type="password"
+                    placeholder="8文字以上30文字以内で入力してください"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            </>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="passwordConfirm"
+          render={({ field }) => (
+            <>
+              <FormItem>
+                <FormLabel>パスワード（確認）</FormLabel>
+                <FormControl>
+                  <Input
+                    type="password"
+                    placeholder="8文字以上30文字以内で入力してください"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            </>
           )}
         />
         <Button type="submit" disabled={action.isPending} className="">
