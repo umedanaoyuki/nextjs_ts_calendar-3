@@ -59,7 +59,7 @@ export const CreateScheduleModal = ({
               type="text"
               value={newSchedule.title}
               onChange={changeNewSchedule}
-              color="purple-800"
+              variant="purple"
             />
           </div>
           <div className="w-[100%] flex items-center">
@@ -72,7 +72,7 @@ export const CreateScheduleModal = ({
               type="date"
               value={newSchedule.date}
               onChange={changeNewSchedule}
-              color="purple-800"
+              variant="purple"
             />
           </div>
           <div className="w-[100%] flex items-center">

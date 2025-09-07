@@ -61,7 +61,11 @@ const LoginForm = () => {
             <FormItem>
               <FormLabel>メールアドレス</FormLabel>
               <FormControl>
-                <Input placeholder="○○○@○○○.co.jpなど" {...field} />
+                <Input
+                  placeholder="○○○@○○○.co.jpなど"
+                  variant="default"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -77,6 +81,7 @@ const LoginForm = () => {
                 <Input
                   type="password"
                   placeholder="8文字以上30文字以内で入力してください"
+                  variant="default"
                   {...field}
                 />
               </FormControl>
