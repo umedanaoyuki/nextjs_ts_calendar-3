@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks";
 import { sigup } from "@/app/actions/signup";
@@ -17,9 +17,12 @@ import {
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Link from "next/link";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const SignupForm = () => {
   const router = useRouter();
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const { form, action, handleSubmitWithAction } = useHookFormAction(
     sigup,
@@ -43,6 +46,7 @@ const SignupForm = () => {
           name: "",
           email: "",
           password: "",
+          passwordConfirm: "",
         },
       },
       errorMapProps: {},
@@ -93,20 +97,55 @@ const SignupForm = () => {
           control={form.control}
           name="password"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>パスワード</FormLabel>
-              <FormControl>
-                <Input
-                  type="password"
-                  placeholder="8文字以上30文字以内で入力してください"
-                  variant="default"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
+            <>
+              <FormItem>
+                <FormLabel>パスワード</FormLabel>
+                <FormControl>
+                  <Input
+                    type={passwordVisible ? "text" : "password"}
+                    placeholder="8文字以上30文字以内で入力してください"
+                    variant="default"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            </>
           )}
         />
+        <FormField
+          control={form.control}
+          name="passwordConfirm"
+          render={({ field }) => (
+            <>
+              <FormItem>
+                <FormLabel>パスワード（確認）</FormLabel>
+                <FormControl>
+                  <Input
+                    type={passwordVisible ? "text" : "password"}
+                    placeholder="8文字以上30文字以内で入力してください"
+                    variant="default"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            </>
+          )}
+        />
+        <div className="flex items-center gap-2">
+          <Checkbox
+            id="passwordVisible"
+            name="passwordVisible"
+            checked={passwordVisible}
+            onCheckedChange={(checked: boolean) => {
+              return setPasswordVisible(checked);
+            }}
+          />
+          <label htmlFor="passwordVisible" className="text-sm">
+            パスワードを表示
+          </label>
+        </div>
         <Button type="submit" disabled={action.isPending} className="">
           {action.isPending ? "作成中..." : "アカウントを作成"}
         </Button>

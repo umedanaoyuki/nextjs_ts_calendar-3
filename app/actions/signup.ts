@@ -7,28 +7,30 @@ import { SignupSchema } from "../utils/schemas";
 
 export const sigup = actionClient
   .schema(SignupSchema)
-  .action(async ({ parsedInput: { name, email, password } }) => {
-    const hashedPassword = bcrypt.hashSync(password, 10);
+  .action(
+    async ({ parsedInput: { name, email, password, passwordConfirm } }) => {
+      const hashedPassword = bcrypt.hashSync(password, 10);
 
-    const userData = {
-      name,
-      email,
-      password: hashedPassword,
-    };
-
-    try {
-      await connectDB();
-      await UserModel.create(userData);
-
-      return {
-        success: true,
-        message: "ユーザー登録が完了しました",
+      const userData = {
+        name,
+        email,
+        password: hashedPassword,
       };
-    } catch (err) {
-      console.log({ err });
-      return {
-        success: false,
-        message: "ユーザー登録に失敗しました",
-      };
+
+      try {
+        await connectDB();
+        await UserModel.create(userData);
+
+        return {
+          success: true,
+          message: "ユーザー登録が完了しました",
+        };
+      } catch (err) {
+        console.log({ err });
+        return {
+          success: false,
+          message: "ユーザー登録に失敗しました",
+        };
+      }
     }
-  });
+  );
