@@ -1,6 +1,9 @@
 name: front-github-actions
 # mainブランチに対してPRが作成されたタイミングをトリガーとする
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
