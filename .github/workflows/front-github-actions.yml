@@ -1,9 +1,6 @@
 name: front-github-actions
 # mainブランチに対してPRが作成されたタイミングをトリガーとする
 on:
-  push:
-    branches-ignore:
-      - "dependabot/**"
   pull_request:
     branches:
       - main
