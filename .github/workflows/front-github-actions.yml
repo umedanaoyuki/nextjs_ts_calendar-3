@@ -23,3 +23,14 @@ jobs:
         run: npm run fix:prettier
       - name: build
         run: npm run build
+
+  build:
+    name: Danger JS
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Danger
+        uses: danger/danger-js@13.0.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DANGER_DISABLE_TRANSPILATION: true
