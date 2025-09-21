@@ -15,12 +15,12 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "22"
-      - name: install
-        run: npm install
+      - name: ci
+        run: npm ci
       - name: ESLint
-        run: npm run fix:eslint
+        run: npm run check:eslint
       - name: Prettier
-        run: npm run fix:prettier
+        run: npm run check:prettier
       - name: build
         run: npm run build
 
