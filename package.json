@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "fix:eslint": "eslint --ext .js,.ts,.jsx,.tsx --fix",
-    "fix:prettier": "prettier --write ."
+    "fix:prettier": "prettier --write .",
+    "check:eslint": "eslint --ext .js,.ts,.jsx,.tsx",
+    "check:prettier": "prettier --check ."
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
