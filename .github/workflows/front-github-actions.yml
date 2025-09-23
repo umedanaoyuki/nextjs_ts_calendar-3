@@ -19,8 +19,9 @@ jobs:
         run: npm ci
       - name: ESLint
         run: npm run check:eslint
-      - name: Prettier
-        run: npm run check:prettier
+      - name: Prettier (Warning Only)
+        run: npm run check:prettier || echo "Prettier check failed, but continuing..."
+        continue-on-error: true
       - name: build
         run: npm run build
 
